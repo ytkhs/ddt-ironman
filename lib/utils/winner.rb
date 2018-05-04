@@ -1,4 +1,6 @@
 require 'date'
+require 'json'
+
 class Winner
 	attr_accessor :num, :name, :date
 	
@@ -8,11 +10,14 @@ class Winner
 		@date = Date.parse(date.strip.gsub('.', '/')) rescue nil
 	end
 	
-	def disp_line
-		 sprintf("#%s %s %s", @num.ljust(5), @date&.strftime('%Y-%m-%d'), @name)
-	end
-	
-	def csv_row
-		 [@num, @date&.strftime('%Y-%m-%d'), @name].join(',')
+	def format(type = 'human')
+		case type
+		when 'csv'
+			[@num, @date&.strftime('%Y-%m-%d'), @name].join(',')
+		when 'json'
+			JSON.pretty_generate(['number' => @num, 'date' => @date&.strftime('%Y-%m-%d'), 'name' => @name])
+		else
+			return sprintf("#%s %s %s", @num.ljust(5), @date&.strftime('%Y-%m-%d'), @name)
+		end
 	end
 end
