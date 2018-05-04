@@ -11,7 +11,7 @@ namespace :ih do
 	desc "get all DDT Ironman-Heavymetalweight Champions"
 	task :all do
 	 	Ironman.new.winners.each do |winner|
-			puts winner.disp_line
+			puts winner.csv_row
 		end
 	end
 end

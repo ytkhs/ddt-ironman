@@ -13,6 +13,6 @@ class Winner
 	end
 	
 	def csv_row
-		 sprintf("#%s %s %s", @num, @date&.strftime('%Y-%m-%d'), @name)
+		 [@num, @date&.strftime('%Y-%m-%d'), @name].join(',')
 	end
 end
