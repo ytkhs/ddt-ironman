@@ -23,7 +23,8 @@ namespace :ih do
 				num: data[0] ? data[0].text.ljust(5) : '',
 				name: data[2] ? data[2].text : '',
 			}
-			puts sprintf("%{date} %{num}　%{name}", hash)
+			puts sprintf("%{date} %{num} %{name}", hash)
+			puts "...powered by http://extremeparty.heteml.jp/title.html#ironman"
 		end
 	end
 end
