@@ -22,7 +22,7 @@ class Winner
     when 'json'
       JSON.pretty_generate(['number' => @num, 'date' => @date&.strftime('%Y-%m-%d'), 'name' => @name])
     else
-      return sprintf("#%s %s %s", @num.ljust(5), @date&.strftime('%Y-%m-%d'), @name)
+      return sprintf("#%s %s %s", @num.to_s.ljust(5), @date&.strftime('%Y-%m-%d'), @name)
     end
   end
 end
