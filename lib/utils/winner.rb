@@ -5,7 +5,12 @@ class Winner
   attr_accessor :num, :name, :date
   
   def initialize(num, date, name)
-    @num = num.strip.delete("^0-9")
+    num = num.strip
+    begin
+      @num = Integer(num.strip.delete("^0-9"))
+    rescue
+      @num = num # 「暫定」など数字じゃない場合がある
+    end
     @name = name.strip
     @date = Date.parse(date.strip.gsub('.', '/')) rescue nil
   end
