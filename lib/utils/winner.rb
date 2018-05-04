@@ -9,6 +9,10 @@ class Winner
 	end
 	
 	def disp_line
-		 puts sprintf("#%s %s %s", @num.ljust(5), @date&.strftime('%Y-%m-%d'), @name)
+		 sprintf("#%s %s %s", @num.ljust(5), @date&.strftime('%Y-%m-%d'), @name)
+	end
+	
+	def csv_row
+		 sprintf("#%s %s %s", @num, @date&.strftime('%Y-%m-%d'), @name)
 	end
 end
