@@ -34,4 +34,14 @@ bundle exec rake ih:all
 		 .
 		 .
      #1300  2018-04-22 スーパーササダンゴマシン	
+
+
+bundle exec rake ih:latest[json]
+[
+  {
+    "number": 1473,
+    "date": "2020-01-13",
+    "name": "大鷲透"
+  }
+]
 ```
