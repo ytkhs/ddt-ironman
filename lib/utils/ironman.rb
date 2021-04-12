@@ -10,7 +10,7 @@ class Ironman
   attr_accessor :winners
   
   def initialize
-    html = open(URL_DDT_TITLE).read
+    html = URI.open(URL_DDT_TITLE).read
     doc = Nokogiri::HTML(html.toutf8, nil, 'utf-8')
     @winners = []
     
