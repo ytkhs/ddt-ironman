@@ -6,7 +6,7 @@ require_relative './winner'
 
 class Ironman
 
-  URL_DDT_TITLE = "http://extremeparty.heteml.jp/title.html"
+  URL_DDT_TITLE = "https://extremeparty.heteml.net/title.html"
   attr_accessor :winners
   
   def initialize
