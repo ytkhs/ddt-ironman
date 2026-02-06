@@ -10,8 +10,20 @@ namespace :ih do
   
   desc "get all DDT Ironman-Heavymetalweight Champions"
   task :all, :type do |task, args|
-    Ironman.new.winners.each do |winner|
-      puts winner.format(args.type)
+    winners = Ironman.new.winners
+    if args.type == 'json'
+      puts JSON.pretty_generate(winners.map(&:to_h))
+    else
+      winners.each do |winner|
+        puts winner.format(args.type)
+      end
     end
+  end
+
+  desc "update winners.json"
+  task :update do
+    winners = Ironman.new.winners
+    File.write('data/winners.json', JSON.pretty_generate(winners.map(&:to_h)))
+    puts "Updated data/winners.json with #{winners.size} winners."
   end
 end

@@ -15,12 +15,20 @@ class Winner
     @date = Date.parse(date.strip.gsub('.', '/')) rescue nil
   end
   
+  def to_h
+    {
+      'number' => @num,
+      'date' => @date&.strftime('%Y-%m-%d'),
+      'name' => @name
+    }
+  end
+
   def format(type = 'human')
     case type
     when 'csv'
       [@num, @date&.strftime('%Y-%m-%d'), @name].join(',')
     when 'json'
-      JSON.pretty_generate(['number' => @num, 'date' => @date&.strftime('%Y-%m-%d'), 'name' => @name])
+      JSON.pretty_generate(to_h)
     else
       return sprintf("#%s %s %s", @num.to_s.ljust(5), @date&.strftime('%Y-%m-%d'), @name)
     end
