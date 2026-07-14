@@ -1,5 +1,6 @@
 require 'pp'
 require_relative '../utils/ironman'
+require_relative '../utils/winners_json'
 
 namespace :ih do
 
@@ -12,7 +13,7 @@ namespace :ih do
   task :all, :type do |task, args|
     winners = Ironman.new.winners
     if args.type == 'json'
-      puts JSON.pretty_generate(winners.map(&:to_h))
+      puts WinnersJson.generate(winners)
     else
       winners.each do |winner|
         puts winner.format(args.type)
@@ -23,7 +24,7 @@ namespace :ih do
   desc "update winners.json"
   task :update do
     winners = Ironman.new.winners
-    File.write('data/winners.json', JSON.pretty_generate(winners.map(&:to_h)))
+    File.write('data/winners.json', WinnersJson.generate(winners))
     puts "Updated data/winners.json with #{winners.size} winners."
   end
 end
